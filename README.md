@@ -1,8 +1,8 @@
 # SafeHer-Women Safety Web App
 
-A mobile-friendly safety web app.
-prototype link <a href="https://avichalmaurya.github.io/SafeHer-recHERsion/"> Click to open the Prototype Website </a>
-
+A mobile-friendly safety web app.<br>
+Prototype link <a href="https://avichalmaurya.github.io/SafeHer-recHERsion/"> Click </a> to open the Prototype Website <br>
+<a href="https://1drv.ms/p/c/456bea23434d884d/IQBa8Y2BZ1ooRqtIeK2Irs2aARwdOC_9z7fsPv9Zdm8Xz_0">Click </a> to preview the Hackathon ppt.
 Features
 - Phone number + password login, first-time safety profile
 - SOS siren (tap twice) and Silent SOS, with SMS alert to police station and trusted contacts
