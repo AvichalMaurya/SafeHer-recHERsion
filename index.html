@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SafeHer – Women Safety</title>
+<style>
+:root{--bg:#fff7f8;--card:#fff;--tx:#2a1a1e;--mut:#7a6268;--br:#f0d9de;--ac:#c2185b;--red:#e5101d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1114;--card:#26191d;--tx:#f7e9ed;--mut:#b49aa1;--br:#3d2a30;--ac:#f06292}}
+:root[data-theme="dark"]{--bg:#1a1114;--card:#26191d;--tx:#f7e9ed;--mut:#b49aa1;--br:#3d2a30;--ac:#f06292}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+main{max-width:480px;margin:0 auto;padding:16px 16px 90px}
+h1{font-size:22px;margin:8px 0}h2{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px;margin:12px 0}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,textarea,select{width:100%;padding:12px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+button{font:inherit;cursor:pointer}
+.btn{width:100%;padding:13px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-weight:600;margin-top:12px}
+.btn.alt{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.sos-wrap{display:flex;flex-direction:column;align-items:center;margin:18px 0}
+#sos{width:210px;height:210px;border-radius:50%;border:8px solid #ff8a8f;background:radial-gradient(circle at 35% 30%,#ff5a5f,var(--red) 60%,#a00009);color:#fff;font-size:26px;font-weight:800;box-shadow:0 8px 30px rgba(229,16,29,.55);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#sos.on{animation:p .5s infinite alternate}
+@keyframes p{to{transform:scale(1.07);box-shadow:0 0 50px 12px rgba(229,16,29,.8)}}
+.hint{color:var(--mut);font-size:13px;text-align:center;margin-top:10px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--br);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;padding:12px 4px;background:none;border:0;color:var(--mut);font-size:13px}
+nav button.a{color:var(--ac);font-weight:700}
+.hide{display:none!important}
+.call{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid var(--br);border-radius:10px;margin:8px 0;color:var(--tx);text-decoration:none}
+.call b{color:var(--ac)}
+#toast{position:fixed;left:16px;right:16px;bottom:80px;max-width:440px;margin:auto;background:#333;color:#fff;padding:12px;border-radius:10px;text-align:center;opacity:0;pointer-events:none;transition:.3s}
+#toast.s{opacity:1}
+.err{color:var(--red);font-size:14px}
+.ov{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;color:#fff;text-align:center;padding:24px}
+.ov button{width:76px;height:76px;border-radius:50%;border:0;font-size:30px;color:#fff;margin:0 26px}
+#qx{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);right:8px;z-index:8;padding:6px 12px;border-radius:20px;border:1px solid var(--br);background:var(--card);color:var(--tx);font-size:13px}
+#calc{z-index:30;background:#1c1c1e;justify-content:flex-end}
+#cD{font-size:52px;width:100%;text-align:right;padding:12px;word-break:break-all;min-height:80px}
+#cG{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:360px;margin-bottom:24px}
+#cG button{width:100%;height:64px;margin:0;border-radius:32px;font-size:24px;background:#333}
+body{background:radial-gradient(1200px 520px at 50% -140px,rgba(194,24,91,.18),transparent),var(--bg)}
+h1{font-size:24px;font-weight:800}
+.card{border-radius:18px;box-shadow:0 4px 18px rgba(194,24,91,.08)}
+.btn{background:linear-gradient(135deg,#d81b60,#8e24aa);box-shadow:0 4px 12px rgba(142,36,170,.3);transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn.alt{background:transparent;box-shadow:none}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--ac);border-color:transparent}
+nav{backdrop-filter:blur(10px);box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+nav button{font-size:12px;border-top:3px solid transparent}
+nav button.a{border-top-color:var(--ac);background:linear-gradient(180deg,rgba(194,24,91,.12),transparent)}
+#tHome>h1{display:none}
+nav button{padding:10px 2px;font-size:11px}
+.chip{cursor:pointer;font:inherit;font-size:12px}
+.chip.sel{background:var(--ac);color:#fff;border-color:var(--ac)}
+.hero{display:flex;align-items:center;gap:12px;margin:6px 0 4px}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#d81b60,#8e24aa);display:grid;place-items:center;font-size:24px;box-shadow:0 4px 12px rgba(142,36,170,.4)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chip{font-size:12px;padding:5px 11px;border-radius:20px;background:var(--card);border:1px solid var(--br);color:var(--mut)}
+.chip.ok{color:var(--tx)}.chip.ok::before{content:"● ";color:#2e9e5b}
+#sos:not(.on){animation:idle 2.4s infinite}
+@keyframes idle{0%{box-shadow:0 0 0 0 rgba(229,16,29,.5),0 8px 30px rgba(229,16,29,.55)}100%{box-shadow:0 0 0 40px rgba(229,16,29,0),0 8px 30px rgba(229,16,29,.55)}}
+#tip{display:flex;gap:10px;align-items:flex-start;background:linear-gradient(135deg,rgba(216,27,96,.08),rgba(142,36,170,.08));margin-top:20px;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<!-- AUTH -->
+<section id="auth">
+  <h1>🛡️ SafeHer</h1>
+  <p class="hint" style="text-align:left">Your personal safety companion.</p>
+  <div class="card">
+    <h2 id="authT" style="margin-top:0">Log in</h2>
+    <label>Phone number</label><input id="ph" type="tel" inputmode="tel" placeholder="10-digit mobile number" autocomplete="tel">
+    <label>Password</label><input id="pw" type="password" autocomplete="current-password">
+    <div id="pw2w" class="hide"><label>Confirm password</label><input id="pw2" type="password" autocomplete="new-password"></div>
+    <div id="aerr" class="err"></div>
+    <button class="btn" id="authB">Log in</button>
+    <button class="btn alt" id="authS">New here? Create account</button>
+  </div>
+</section>
+
+<!-- ONBOARDING / PROFILE -->
+<section id="prof" class="hide">
+  <h1 id="profT">Set up your safety info</h1>
+  <p class="hint" style="text-align:left">Used only for alerts. Stored on this device.</p>
+  <div class="card">
+    <h2 style="margin-top:0">Trusted people (get your location &amp; calls)</h2>
+    <div id="cts"></div>
+    <h2>Workplace / institute</h2>
+    <label>Contact number</label><input id="workC" type="tel">
+    <h2>Addresses</h2>
+    <label>Home address</label><textarea id="home" rows="2"></textarea>
+    <label>Current residing address</label><textarea id="cur" rows="2"></textarea>
+    <label>Office / institute address</label><textarea id="off" rows="2"></textarea>
+    <h2>Nearest police station (to current residence)</h2>
+    <label>Station address</label><textarea id="psA" rows="2"></textarea>
+    <label>Station phone number</label><input id="psP" type="tel" placeholder="Used for alerts &amp; calls">
+    <h2>App lock PIN</h2><label>4–6 digit PIN (leave blank and save to remove)</label><input id="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off"><button class="btn alt" id="savePin">Set / change PIN</button><div class="hint" style="text-align:left">With a PIN, the “Quick exit” button (top right) turns the app into a calculator. Type your PIN and press = to come back.</div>
+    <div id="perr" class="err"></div>
+    <button class="btn" id="saveP">Save &amp; continue</button>
+    <button class="btn alt hide" id="logout">Log out</button>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="app" class="hide">
+  <div id="tHome">
+    <div class="hero"><div class="logo">🛡️</div><div><div id="hi" style="font-weight:800;font-size:20px">Hello</div><div class="hint" style="text-align:left;margin:0">You’re protected. Help is one tap away.</div></div></div><div class="chips" id="chips"></div>
+    <h1>Stay safe 💗</h1>
+    <div class="sos-wrap">
+      <button id="sos" aria-label="Emergency buzzer">TAP TWICE<br>SOS</button>
+      <button class="btn alt" id="silent" style="max-width:260px;background:linear-gradient(180deg,#7b1fa2,#4a148c);color:#fff;border:3px solid #ce93d8;border-radius:40px;padding:16px 20px;font-size:17px;font-weight:700;letter-spacing:.3px;box-shadow:0 6px 18px rgba(74,20,140,.55);margin:18px 0 4px;touch-action:manipulation">🤫 Silent SOS (tap twice, no sound)</button>
+      <div class="hint" id="sosH">Tap twice quickly: loud siren + alert message to police &amp; trusted people.</div>
+      <button class="btn hide" id="stop" style="max-width:260px">⏹ Stop siren</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="locB">📍 Send location</button>
+      <button class="btn" id="callB" style="background:var(--red)">📞 Emergency call</button>
+    </div>
+  </div>
+  <div id="tTools" class="hide"><h1>Safety tools</h1>
+    <div class="card"><h2 style="margin-top:0">🚕 Cab safety pack</h2><p class="hint" style="text-align:left">Before you get in, record the cab and share it with your trusted people.</p><label>Number plate photo</label><div class="row"><button class="btn alt" type="button" id="cbCam">📷 Take photo</button><button class="btn alt" type="button" id="cbGal">🖼️ Choose file</button></div><input id="cbFc" type="file" accept="image/*" capture="environment" class="hide"><input id="cbF" type="file" accept="image/*" class="hide"><div id="cbSt" class="hint" style="text-align:left"></div><label>Number plate</label><input id="cbN" placeholder="e.g. TS 09 AB 1234" autocapitalize="characters"><label>Driver name / cab app (optional)</label><input id="cbD"><label>Going to</label><input id="cbG"><div id="cbE" class="err"></div><button class="btn" id="cbS">Share trip details</button><div class="hint">Your pickup location and time are added automatically, and a copy is saved in your Vault.</div></div>
+    <div class="card"><h2 style="margin-top:0">📞 Fake incoming call</h2><label>Caller name</label><input id="fkName" placeholder="Mom"><label>Ring after</label><select id="fkD"><option value="5">5 seconds</option><option value="15">15 seconds</option><option value="30">30 seconds</option><option value="60">1 minute</option></select><button class="btn" id="fkGo">Schedule call</button><div class="hint">Keep this page open and the screen on.</div></div>
+    <div class="card"><h2 style="margin-top:0">⏱️ Check-in timer</h2><p class="hint" style="text-align:left">Going somewhere risky? If you don’t tap “I’m safe” in time, an SOS alert starts automatically.</p><div id="ciL" style="font-size:44px;font-weight:800;text-align:center">--:--</div><label>Time needed</label><select id="ciM"><option value="1">1 minute (demo)</option><option value="10">10 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="60">1 hour</option></select><div class="row"><button class="btn" id="ciGo">Start</button><button class="btn alt" id="ciX">I’m safe / Cancel</button></div></div></div>
+  <div id="tHelp" class="hide"><h1>Help &amp; support</h1>
+    <p class="hint" style="text-align:left">Helplines, legal aid and counselling for what comes after. Free to call unless stated.</p>
+    <select id="hG"></select>
+    <input id="hQ" placeholder="Search (e.g. legal, stalking, counselling)" style="margin-top:10px">
+    <div class="chips" id="hC"></div><div id="hTip"></div><div id="hL"></div>
+    <p class="hint" style="text-align:left">Numbers last checked October 2026 against public and government sources. If a call does not connect, confirm on the official site. This is guidance, not legal advice.</p></div>
+  <div id="tVault" class="hide"><h1>Evidence vault</h1><div class="card"><label>Note (what happened, usernames, links)</label><textarea id="vT" rows="4"></textarea><label>Photo or screenshot (optional)</label><div class="row"><button class="btn alt" type="button" id="vCam">📷 Take photo</button><button class="btn alt" type="button" id="vGal">🖼️ Choose file</button></div><input id="vFc" type="file" accept="image/*" capture="environment" class="hide"><input id="vF" type="file" accept="image/*" class="hide"><div id="vSt" class="hint" style="text-align:left"></div><button class="btn" id="vAdd">Save evidence</button><button class="btn alt" id="vCp">Copy all notes</button></div><div id="vL"></div></div>
+  <div id="tCyber" class="hide">
+    <h1>Report cyber crime</h1>
+    <div class="card">
+      <label>Type of complaint</label>
+      <select id="cType"><option>Identity theft</option><option>Privacy breach</option><option>Online threats</option><option>Other</option></select>
+      <label>Cyber police email (optional, if you have it)</label><input id="cTo" type="email" placeholder="e.g. your state cyber cell email">
+      <label>Describe what happened</label><textarea id="cDesc" rows="5" placeholder="Include dates, usernames, links, screenshots you hold…"></textarea>
+      <div id="cerr" class="err"></div>
+      <button class="btn" id="cSend">Send to cyber police</button>
+      <a class="call" href="tel:1930"><span>Cyber crime helpline</span><b>1930</b></a>
+      <a class="call" href="https://cybercrime.gov.in" target="_blank" rel="noopener"><span>File on national portal</span><b>cybercrime.gov.in</b></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav id="nav" class="hide">
+  <button data-t="Home" class="a">🏠<br>Home</button>
+  <button data-t="Cyber">💻<br>Cyber</button>
+  <button data-t="Tools">🧰<br>Tools</button>
+  <button data-t="Vault">🗂️<br>Vault</button>
+  <button data-t="Help">🤝<br>Help</button>
+  <button data-t="Prof">👤<br>Profile</button>
+</nav>
+
+<div id="callM" class="hide" style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;z-index:9" >
+  <div class="card" style="width:100%;max-width:480px;margin:0 auto;border-radius:18px 18px 0 0;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))">
+    <h2 style="margin-top:0">Who do you want to call?</h2>
+    <div id="callL"></div>
+    <button class="btn alt" id="callX">Cancel</button>
+  </div>
+</div>
+<div id="pwM" class="hide" style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:25;padding:16px"><div class="card" style="width:100%;max-width:400px"><h2 style="margin-top:0">🔒 Confirm your password</h2><p class="hint" style="text-align:left">Enter your password to view or edit your profile.</p><input id="pwI" type="password" autocomplete="current-password"><div id="pwE" class="err"></div><div class="row"><button class="btn" id="pwOk">Continue</button><button class="btn alt" id="pwX">Cancel</button></div></div></div>
+<button id="qx" class="hide">✕ Quick exit</button>
+<div id="fk" class="ov hide"><div style="font-size:34px;margin-top:auto" id="fkN"></div><div id="fkS" style="color:#aaa;margin:6px 0 auto"></div><div id="fkA" style="margin-bottom:60px"><button id="fkDc" style="background:#e53935">✖</button><button id="fkAc" style="background:#43a047">✆</button></div><div id="fkB" class="hide" style="margin-bottom:60px"><button id="fkEnd" style="background:#e53935">✖</button></div></div>
+<div id="chk" class="ov hide" style="background:#b71c1c"><h1>Are you safe?</h1><p>SOS starts automatically in <b id="chkT">30</b>s</p><button id="chkB" style="width:auto;height:auto;border-radius:14px;padding:16px 28px;font-size:20px;background:#2e7d32">I’m safe</button></div>
+<div id="calc" class="ov hide"><div id="cHint" class="hide" style="color:#aaa">Enter your PIN and press =</div><div id="cD">0</div><div id="cG"></div></div>
+<div id="aM" class="hide" style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;z-index:10">
+  <div class="card" style="width:100%;max-width:480px;margin:0 auto;border-radius:18px 18px 0 0;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))">
+    <h2 id="aT" style="margin-top:0"></h2><div id="aL"></div>
+    <p id="aTx" class="hint" style="text-align:left;word-break:break-word"></p>
+    <div class="row"><button class="btn alt" id="aC">Copy message</button><button class="btn alt" onclick="$('#aM').classList.add('hide')">Close</button></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const sg=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const ss=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('s');setTimeout(()=>t.classList.remove('s'),3500)};
+const clean=p=>(p||'').replace(/[^\d+]/g,'');
+async function hash(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('safeher:'+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return btoa(s)}}
+let users=sg('sh_users',{}),me=sg('sh_me',null),signup=false;
+const show=id=>{['auth','prof','app'].forEach(s=>$('#'+s).classList.toggle('hide',s!==id));$('#nav').classList.toggle('hide',id==='auth'||(id==='prof'&&!users[me]?.p));$('#qx').classList.toggle('hide',id==='auth')};
+
+// ---- auth
+$('#authS').onclick=()=>{signup=!signup;$('#authT').textContent=signup?'Create account':'Log in';$('#authB').textContent=signup?'Sign up':'Log in';$('#authS').textContent=signup?'Have an account? Log in':'New here? Create account';$('#pw2w').classList.toggle('hide',!signup);$('#aerr').textContent=''};
+$('#authB').onclick=async()=>{
+  const ph=clean($('#ph').value),pw=$('#pw').value,e=$('#aerr');e.textContent='';
+  if(ph.replace('+','').length<10)return e.textContent='Enter a valid phone number.';
+  if(pw.length<6)return e.textContent='Password must be at least 6 characters.';
+  const h=await hash(pw);
+  if(signup){
+    if(pw!==$('#pw2').value)return e.textContent='Passwords do not match.';
+    if(users[ph])return e.textContent='Account already exists. Please log in.';
+    users[ph]={h,p:null};ss('sh_users',users);me=ph;ss('sh_me',me);openProfile();
+  }else{
+    if(!users[ph]||users[ph].h!==h)return e.textContent='Wrong phone number or password.';
+    me=ph;ss('sh_me',me);users[ph].p?openApp():openProfile();
+  }
+};
+$('#logout').onclick=()=>{me=null;ss('sh_me',null);stopSiren();show('auth')};
+
+// ---- profile
+$('#cts').innerHTML=[1,2,3].map(i=>`<div class="row"><div><label>Contact ${i} name</label><input id="cn${i}"></div><div><label>Phone</label><input id="cp${i}" type="tel"></div></div>`).join('');
+function openProfile(){
+  const p=users[me].p||{};
+  [1,2,3].forEach(i=>{$('#cn'+i).value=p.c?.[i-1]?.n||'';$('#cp'+i).value=p.c?.[i-1]?.p||''});
+  $('#workC').value=p.workC||'';$('#home').value=p.home||'';$('#cur').value=p.cur||'';$('#off').value=p.off||'';$('#psA').value=p.psA||'';$('#psP').value=p.psP||'';
+  $('#profT').textContent=p.c?'Your profile':'Set up your safety info';$('#logout').classList.toggle('hide',!p.c);
+  show('prof');
+}
+$('#saveP').onclick=()=>{
+  const c=[1,2,3].map(i=>({n:$('#cn'+i).value.trim(),p:clean($('#cp'+i).value)})).filter(x=>x.p);
+  const e=$('#perr');e.textContent='';
+  if(!c.length)return e.textContent='Add at least one trusted contact.';
+  if(!$('#home').value.trim()||!$('#cur').value.trim())return e.textContent='Home and current address are required.';
+  users[me].p={c,workC:clean($('#workC').value),home:$('#home').value.trim(),cur:$('#cur').value.trim(),off:$('#off').value.trim(),psA:$('#psA').value.trim(),psP:clean($('#psP').value)};
+  ss('sh_users',users);openApp();toast('Saved ✔');
+};
+
+// ---- tabs
+function openApp(){show('app');tab('Home')}
+function tab(t){
+  if(t==='Vault')vRender();if(t==='Home')dash();if(t==='Help')hRender();['Home','Cyber','Tools','Vault','Help'].forEach(x=>$('#t'+x).classList.toggle('hide',x!==t));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('a',b.dataset.t===t));
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{b.dataset.t==='Prof'?askPw(openProfile):(show('app'),tab(b.dataset.t))});
+
+// ---- location + messaging
+function getLoc(){return new Promise(r=>{if(!navigator.geolocation)return r(null);navigator.geolocation.getCurrentPosition(p=>r(p.coords),er=>{toast(er.code==1?'Location is blocked. Allow Location for this site in your browser settings, or open the link directly in Chrome/Safari.':'Could not get a GPS fix. Move near a window and try again.');r(null)},{enableHighAccuracy:true,timeout:8000,maximumAge:5000})})}
+function act(title,href,label,text){
+  $('#aT').textContent=title;$('#aTx').textContent=text;
+  $('#aL').innerHTML=`<a class="call" target="_blank" rel="noopener" href="${href}" style="background:var(--red);color:#fff;font-size:18px"><span>${label}</span><b style="color:#fff">TAP ▶</b></a>`;
+  $('#aC').onclick=async()=>{try{await navigator.clipboard.writeText(text);toast('Message copied')}catch(e){toast('Copy not allowed – select the text manually')}};
+  $('#aM').classList.remove('hide');
+}
+function sms(nums,body){act('Send your alert','sms:'+nums.filter(Boolean).join(',')+'?&body='+encodeURIComponent(body),'📩 Send alert SMS',body)}
+async function msg(prefix){
+  const c=await getLoc();
+  return prefix+' '+(c?`My live location: https://maps.google.com/?q=${c.latitude},${c.longitude} (accuracy ~${Math.round(c.accuracy)}m).`:'GPS unavailable. My saved address: '+users[me].p.cur+' (https://maps.google.com/?q='+encodeURIComponent(users[me].p.cur)+'). Please call me.')+` – Phone: ${me}`;
+}
+$('#locB').onclick=async()=>{
+  const p=users[me].p;toast('Getting your location…');
+  sms(p.c.map(x=>x.p),await msg('📍 I am sharing my location with you.'));
+};
+
+// ---- siren
+let ac,osc,gain,tm,lastTap=0;
+function startSiren(){
+  try{
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume();
+    osc=ac.createOscillator();gain=ac.createGain();osc.type='square';gain.gain.value=1;
+    const comp=ac.createDynamicsCompressor();osc.connect(gain);gain.connect(comp);comp.connect(ac.destination);osc.start();
+    let hi=false;const sw=()=>{osc.frequency.setValueAtTime(hi?1600:700,ac.currentTime);hi=!hi};sw();tm=setInterval(()=>{sw();navigator.vibrate&&navigator.vibrate(300)},350);
+  }catch(e){toast('Could not start siren on this device.')}
+  $('#sos').classList.add('on');$('#stop').classList.remove('hide');
+}
+function stopSiren(){try{clearInterval(tm);osc&&osc.stop();osc=null;navigator.vibrate&&navigator.vibrate(0)}catch(e){}$('#sos').classList.remove('on');$('#stop').classList.add('hide')}
+$('#stop').onclick=stopSiren;
+$('#sos').addEventListener('pointerup',async()=>{
+  const n=Date.now();
+  if(n-lastTap<700){
+    lastTap=0;if(osc)return stopSiren();
+    startSiren();const p=users[me].p;
+    const nums=[p.psP,...p.c.map(x=>x.p)];
+    toast('SIREN ON. Opening alert message – tap Send.');
+    const m=await msg('🚨 EMERGENCY! I am in danger and need help immediately.');
+    setTimeout(()=>sms(nums,m),600);
+  }else{lastTap=n;toast('Tap once more to trigger SOS')}
+});
+
+// ---- emergency call
+$('#callB').onclick=()=>{
+  const p=users[me].p;
+  const rows=[['Police',  '100'],['Emergency (all services)','112'],['Women helpline','1091']];
+  if(p.psP)rows.unshift(['Nearest police station',p.psP]);
+  p.c.forEach((x,i)=>rows.push([x.n||'Trusted contact '+(i+1),x.p]));
+  if(p.workC)rows.push(['Workplace / institute',p.workC]);
+  $('#callL').innerHTML=rows.map(r=>`<a class="call" target="_blank" rel="noopener" href="tel:${r[1]}"><span>${r[0].replace(/</g,'&lt;')}</span><b>Call</b></a>`).join('');
+  $('#callM').classList.remove('hide');
+};
+$('#callX').onclick=()=>$('#callM').classList.add('hide');
+
+// ---- cyber complaint
+$('#cSend').onclick=async()=>{
+  const d=$('#cDesc').value.trim(),e=$('#cerr');e.textContent='';
+  if(d.length<10)return e.textContent='Please describe the incident (at least a few words).';
+  const p=users[me].p,t=$('#cType').value;
+  const body=`Cyber crime complaint\nType: ${t}\nComplainant phone: ${me}\nAddress: ${p.cur}\n\nDetails:\n${d}`;
+  const list=sg('sh_cyber',[]);list.push({t,d,at:new Date().toISOString()});ss('sh_cyber',list);
+  try{await navigator.clipboard.writeText(body)}catch(x){}
+  act('Send your complaint','mailto:?subject='+encodeURIComponent('Cyber crime complaint – '+t)+'&body='+encodeURIComponent(body),'✉️ Open email draft',body);
+  $('#aL').firstElementChild.remove();const g='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent($('#cTo').value.trim())+'&su='+encodeURIComponent('Cyber crime complaint - '+t)+'&body='+encodeURIComponent(body);const L=(h,l)=>`<a class="call" target="_blank" rel="noopener" href="${h}"><span>${l}</span><b>Open</b></a>`;$('#aL').insertAdjacentHTML('beforeend',L(g,'✉️ Email via Gmail')+L('https://cybercrime.gov.in','🌐 File on cybercrime.gov.in (official)')+L('tel:1930','📞 Call helpline 1930'));$('#cDesc').value='';
+};
+
+// ---- helpers
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const alertNums=()=>{const p=users[me].p;return [p.psP,...p.c.map(x=>x.p)]};
+
+// ---- silent SOS
+let lastS=0;
+$('#silent').onclick=async()=>{const n=Date.now();if(n-lastS<700){lastS=0;toast('Silent alert ready – tap Send.');sms(alertNums(),await msg('🚨 SILENT EMERGENCY! I cannot speak or make noise. Please help me.'))}else{lastS=n;toast('Tap once more for silent SOS')}};
+
+// ---- ringtone (fake call + check-in prompt)
+let rt,ro;
+function ring(on){clearInterval(rt);try{ro&&ro.stop()}catch(e){}ro=null;navigator.vibrate&&navigator.vibrate(0);if(!on)return;
+  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume();ro=ac.createOscillator();const g=ac.createGain();g.gain.value=.4;ro.frequency.value=440;ro.connect(g);g.connect(ac.destination);ro.start();let h=0;rt=setInterval(()=>{h=!h;g.gain.value=h?.4:0;h&&navigator.vibrate&&navigator.vibrate(400)},800)}catch(e){}}
+
+// ---- fake call
+let fkTm,fkSec;
+function fkShow(){$('#fkN').textContent=$('#fkName').value.trim()||'Mom';$('#fkS').textContent='mobile';$('#fkA').classList.remove('hide');$('#fkB').classList.add('hide');$('#fk').classList.remove('hide');ring(true)}
+function fkEnd(){ring(false);clearInterval(fkTm);$('#fk').classList.add('hide')}
+$('#fkDc').onclick=fkEnd;$('#fkEnd').onclick=fkEnd;
+$('#fkAc').onclick=()=>{ring(false);fkSec=0;$('#fkA').classList.add('hide');$('#fkB').classList.remove('hide');$('#fkS').textContent='00:00';fkTm=setInterval(()=>{fkSec++;$('#fkS').textContent=fmt(fkSec)},1000)};
+$('#fkGo').onclick=()=>{const d=+$('#fkD').value;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume()}catch(e){}toast('Call will ring in '+d+'s. Keep this page open.');setTimeout(fkShow,d*1000)};
+
+// ---- check-in timer
+let ci=null;
+function ciStop(){ci&&clearInterval(ci.t);ci=null;ring(false);$('#chk').classList.add('hide');$('#ciL').textContent='--:--'}
+async function ciTick(){if(!ci)return;const l=Math.max(0,Math.ceil((ci.end-Date.now())/1000));
+  if(ci.phase==='run'){$('#ciL').textContent=fmt(l);if(!l){ci.phase='ask';ci.end=Date.now()+30000;$('#chk').classList.remove('hide');ring(true)}}
+  else{$('#chkT').textContent=l;if(!l){ciStop();startSiren();sms(alertNums(),await msg('🚨 EMERGENCY! I did not check in on time and may be in danger.'))}}}
+$('#ciGo').onclick=()=>{if(ci)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume()}catch(e){}ci={phase:'run',end:Date.now()+$('#ciM').value*60000};ci.t=setInterval(ciTick,500);ciTick();toast('Timer started. Keep this page open.')};
+$('#ciX').onclick=()=>{if(ci)toast('Glad you are safe 💗');ciStop()};
+$('#chkB').onclick=$('#ciX').onclick;
+
+// ---- evidence vault
+const vk=()=>'sh_vault_'+me;
+function vRender(){const v=sg(vk(),[]);$('#vL').innerHTML=v.length?v.map((x,i)=>`<div class="card"><div class="hint" style="text-align:left">🕒 ${new Date(x.at).toLocaleString()}</div><div style="white-space:pre-wrap;word-break:break-word">${esc(x.t)}</div>${x.i?`<img alt="screenshot" src="${x.i}" style="max-width:100%;border-radius:8px;margin-top:8px">`:''}<button class="btn alt" data-d="${i}">Delete</button></div>`).join(''):'<p class="hint">No evidence saved yet.</p>'}
+$('#vAdd').onclick=()=>{const t=$('#vT').value.trim(),f=$('#vF').files[0]||$('#vFc').files[0];if(!t&&!f)return toast('Add a note or a screenshot.');
+  const save=i=>{const v=sg(vk(),[]);v.unshift({at:Date.now(),t,i});try{localStorage.setItem(vk(),JSON.stringify(v));$('#vT').value='';$('#vF').value='';$('#vFc').value='';$('#vSt').textContent='';vRender();toast('Saved with timestamp ✔')}catch(e){toast('Storage full – delete old items.')}};
+  if(!f)return save(null);
+  const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);save(c.toDataURL('image/jpeg',.6))};im.src=r.result};r.readAsDataURL(f)};
+$('#vL').onclick=e=>{const i=e.target.dataset.d;if(i===undefined)return;const v=sg(vk(),[]);v.splice(+i,1);ss(vk(),v);vRender()};
+$('#vCp').onclick=async()=>{const s=sg(vk(),[]).map(x=>new Date(x.at).toLocaleString()+'\n'+x.t).join('\n\n');try{await navigator.clipboard.writeText(s);toast('Copied')}catch(e){toast('Copy not allowed')}};
+
+// ---- PIN lock + quick exit (calculator disguise)
+let cx='';
+$('#cG').innerHTML=['C','⌫','÷','×','7','8','9','-','4','5','6','+','1','2','3','=','0','.'].map(b=>`<button data-k="${b}">${b}</button>`).join('');
+function ev(s){const t=s.replace(/×/g,'*').replace(/÷/g,'/').match(/\d*\.?\d+|[+\-*/]/g)||[];if(t[0]==='-'){t.shift();t[0]='-'+t[0]}
+  const n=[+t[0]],o=[];for(let i=1;i<t.length;i+=2){const op=t[i],v=+t[i+1];if(isNaN(v))return 'Error';if(op==='*')n[n.length-1]*=v;else if(op==='/')n[n.length-1]/=v;else{o.push(op);n.push(v)}}
+  let r=n[0];o.forEach((op,i)=>r=op==='+'?r+n[i+1]:r-n[i+1]);return isFinite(r)?String(+r.toFixed(8)):'Error'}
+function lock(initial){cx='';$('#cD').textContent='0';$('#cHint').classList.toggle('hide',!initial);$('#calc').classList.remove('hide')}
+$('#cG').onclick=async e=>{const k=e.target.dataset.k;if(!k)return;
+  if(k==='C')cx='';else if(k==='⌫')cx=cx.slice(0,-1);
+  else if(k==='='){const ph=users[me]?.pinH;if(ph&&await hash('pin:'+cx)===ph){cx='';$('#calc').classList.add('hide')}else cx=ev(cx)}
+  else{if(cx==='Error')cx='';cx+=k}
+  $('#cD').textContent=cx||'0'};
+$('#qx').onclick=()=>users[me]?.pinH?lock(false):toast('Set a PIN in Profile first, then Quick exit will work.');
+$('#savePin').onclick=async()=>{const v=$('#pin').value;if(v===''){delete users[me].pinH;ss('sh_users',users);return toast('PIN removed')}if(!/^\d{4,6}$/.test(v))return toast('PIN must be 4 to 6 digits.');users[me].pinH=await hash('pin:'+v);ss('sh_users',users);$('#pin').value='';toast('PIN saved ✔')};
+
+// ---- camera / gallery pickers
+[['vCam','vFc'],['vGal','vF'],['cbCam','cbFc'],['cbGal','cbF']].forEach(x=>$('#'+x[0]).onclick=()=>$('#'+x[1]).click());
+[['vFc','vF','vSt'],['vF','vFc','vSt'],['cbFc','cbF','cbSt'],['cbF','cbFc','cbSt']].forEach(x=>$('#'+x[0]).onchange=()=>{const f=$('#'+x[0]).files[0];$('#'+x[1]).value='';$('#'+x[2]).textContent=f?'\u2714 Photo attached: '+f.name:''});
+
+// ---- cab safety pack
+const shrink=(f,cb)=>{if(!f)return cb(null);const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.6))};im.src=r.result};r.readAsDataURL(f)};
+$('#cbS').onclick=async()=>{const n=$('#cbN').value.trim().toUpperCase(),f=$('#cbF').files[0]||$('#cbFc').files[0],e=$('#cbE');e.textContent='';
+  if(!n&&!f)return e.textContent='Add the number plate or a photo.';
+  toast('Getting your location…');const c=await getLoc();
+  const txt='🚕 Cab details - I am about to travel.\nPlate: '+(n||'see photo')+'\nDriver/app: '+($('#cbD').value.trim()||'-')+'\nGoing to: '+($('#cbG').value.trim()||'-')+'\nTime: '+new Date().toLocaleString()+'\n'+(c?'Pickup location: https://maps.google.com/?q='+c.latitude+','+c.longitude+'\n':'')+'Phone: '+me;
+  shrink(f,img=>{
+    const v=sg(vk(),[]);v.unshift({at:Date.now(),t:txt,i:img});try{localStorage.setItem(vk(),JSON.stringify(v))}catch(x){toast('Vault full - could not save a copy.')}
+    const fb=()=>{sms(users[me].p.c.map(x=>x.p),txt);toast('Photo is saved in your Vault. Send it on WhatsApp too if you can.')};
+    if(f&&navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({text:txt,files:[f]}).catch(fb);else fb();
+  });
+};
+
+// ---- help directory
+const HELP=[
+{id:'e112',n:'Emergency (police, fire, ambulance)',d:'One number for every emergency, anywhere in India.',num:'112',h:'24/7',c:'E'},
+{id:'e1091',n:'Women in distress helpline',d:'Immediate help for women facing danger or harassment.',num:'1091',h:'Usually 24/7',c:'E'},
+{id:'e181',n:'Women helpline (domestic abuse)',d:'Support and referral for domestic violence.',num:'181',h:'24/7',c:'E'},
+{id:'ncw',n:'NCW women helpline',d:'National Commission for Women. Covers sexual violence and harassment. The short code 14490 also reaches it.',num:'7827170170',h:'24/7',c:'E',u:'https://ncwwomenhelpline.ncw.gov.in/'},
+{id:'nalsa',n:'National legal aid helpline',d:'Free legal help from NALSA.',num:'15100',h:'Mon–Fri, 9:30 AM–5:00 PM',c:'L',u:'https://nalsa.gov.in'},
+{id:'tm',n:'Tele-MANAS',d:'Free mental health counselling.',num:'14416',h:'24/7',c:'C'},
+{id:'md',n:'Manodarpan (student support)',d:'Emotional support for students.',num:'8448440632',h:'24/7',c:'C'},
+{id:'cy',n:'Cyber crime helpline',d:'Online fraud, identity theft, blackmail and threats.',num:'1930',h:'Usually 24/7',c:'Y',u:'https://cybercrime.gov.in'}];
+const GUIDE={st:['Stalking or physical threat',['e112','e1091','ncw','ps'],'Note dates, places and messages, and save them in your Vault. Tell someone you trust.'],dv:['Domestic violence',['e181','e112','ncw','nalsa'],'Get to a safe place if you can. Keep ID and important documents within reach.'],ol:['Online harassment or blackmail',['cy','tm','ncw'],'Do not delete anything. Screenshot messages and profiles and save them in your Vault.'],wk:['Harassment at work or campus',['cam','ncw','nalsa'],'Complain in writing to your internal committee and keep a copy.'],tk:['I need someone to talk to',['tm','md','e181'],'You do not have to be in danger to call. Reaching out early helps.'],lg:['I need free legal advice',['nalsa','ncw'],'Have your dates, documents and evidence ready before you call.']};
+let hf='A',hg='';
+$('#hG').innerHTML='<option value="">What happened? (optional)</option>'+Object.keys(GUIDE).map(k=>`<option value="${k}">${GUIDE[k][0]}</option>`).join('');
+function hRender(){const p=users[me]?.p||{};let a=[...HELP];
+  if(p.workC)a.push({id:'cam',n:'Your workplace / institute',d:'Your saved contact (complaints committee, security or HR).',num:p.workC,h:'Your saved contact',c:'K'});
+  if(p.psP)a.push({id:'ps',n:'Your nearest police station',d:p.psA||'Saved in your profile.',num:p.psP,h:'',c:'K'});
+  let tip='';const q=$('#hQ').value.trim().toLowerCase();
+  if(hg){const g=GUIDE[hg];a=g[1].map(i=>a.find(x=>x.id===i)).filter(Boolean);tip=`<div class="card" style="border-color:var(--ac)"><b>${g[0]}</b><br>${g[2]}</div>`}
+  else{if(hf!=='A')a=a.filter(x=>x.c===hf);if(q)a=a.filter(x=>(x.n+' '+x.d).toLowerCase().includes(q))}
+  $('#hTip').innerHTML=tip;
+  $('#hC').innerHTML=[['A','All'],['E','Emergency'],['L','Legal'],['C','Counselling'],['Y','Cyber'],['K','My campus']].map(c=>`<button class="chip${hf===c[0]&&!hg?' sel':''}" data-k="${c[0]}">${c[1]}</button>`).join('');
+  $('#hL').innerHTML=a.length?a.map(x=>`<div class="card"><b>${esc(x.n)}</b><div class="hint" style="text-align:left;margin:4px 0">${esc(x.d)}</div>${x.h?`<div class="hint" style="text-align:left;margin:0 0 8px">🕒 ${esc(x.h)}</div>`:''}<div class="row"><a class="call" target="_blank" rel="noopener" href="tel:${esc(x.num)}" style="background:linear-gradient(135deg,#d81b60,#8e24aa);color:#fff"><span>📞 Call ${esc(x.num)}</span></a>${x.u?`<a class="call" target="_blank" rel="noopener" href="${x.u}"><span>🌐 Visit site</span></a>`:''}</div></div>`).join(''):'<p class="hint">Nothing matches. Try another word or filter.</p>'}
+$('#hC').onclick=e=>{const k=e.target.dataset.k;if(!k)return;hf=k;hg='';$('#hG').value='';hRender()};
+$('#hG').onchange=()=>{hg=$('#hG').value;hRender()};
+$('#hQ').oninput=()=>{hg='';$('#hG').value='';hRender()};
+
+// ---- home dashboard
+function dash(){const u=users[me],p=u&&u.p;if(!p)return;const h=new Date().getHours();
+  $('#hi').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+' 💗';
+  $('#chips').innerHTML=[[p.c.length+' trusted contact'+(p.c.length>1?'s':''),1],[p.psP?'Police station saved':'Add police station',!!p.psP],[u.pinH?'App lock on':'App lock off',!!u.pinH]].map(x=>`<span class="chip${x[1]?' ok':''}">${x[0]}</span>`).join('');
+  if(!$('#tip')){const tips=['Share your live location with someone before getting into any cab.','Keep your phone charged above 20% when travelling alone.','Trust your instincts. If a place feels wrong, leave.','Walk facing the traffic and keep one ear free of headphones.','Tell a friend your route when you travel late.','Save your emergency contacts on speed dial.'];
+    $('#callB').parentElement.insertAdjacentHTML('afterend','<div class="card" id="tip"><span style="font-size:20px">💡</span><div><b>Safety tip</b><br>'+tips[new Date().getDate()%tips.length]+'</div></div>')}}
+
+// ---- password gate for profile
+let pwCb=null;
+function askPw(cb){pwCb=cb;$('#pwI').value='';$('#pwE').textContent='';$('#pwM').classList.remove('hide');setTimeout(()=>$('#pwI').focus(),50)}
+$('#pwX').onclick=()=>$('#pwM').classList.add('hide');
+$('#pwOk').onclick=async()=>{if(await hash($('#pwI').value)===users[me].h){$('#pwM').classList.add('hide');pwCb&&pwCb()}else $('#pwE').textContent='Wrong password.'};
+$('#pwI').onkeydown=e=>{if(e.key==='Enter')$('#pwOk').click()};
+
+// ---- init
+if(me&&users[me]){users[me].p?openApp():openProfile();if(users[me].pinH)lock(true)}else show('auth');
+</script>
+</body>
+</html>
