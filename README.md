@@ -1,6 +1,7 @@
 # SafeHer-Women Safety Web App
 
-A mobile-friendly safety web app (single `index.html`, no build step, no dependencies).
+A mobile-friendly safety web app.
+prototype link <a href="https://avichalmaurya.github.io/SafeHer-recHERsion/"> Click to open the Prototype Website </a>
 
 Features
 - Phone number + password login, first-time safety profile
